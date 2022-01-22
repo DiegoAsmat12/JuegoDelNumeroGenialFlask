@@ -8,22 +8,25 @@ app.secret_key="numero_secreto"
 def showGame():
     if 'random' not in session:
         session["random"] = random.randint(1,100)
-
     if 'contador-intentos' not in session:
         session['contador-intentos']=0
     return render_template('index.html')
 
 @app.route("/guess", methods = ["POST"])
 def guessNumber():
-    guess = int(request.form["guess-number"])
-    if(session["guess-message"]=="You Guessed it!"):
-        return redirect("/")
-    if(guess-session["random"]>0):
-        session["guess-message"]="Too High"
-    elif(guess-session["random"]<0):
-        session["guess-message"]="Too Low"
-    else:
-        session["guess-message"]="You Guessed it!"
+    if(request.form["guess-number"].isdigit()):
+        guess = int(request.form["guess-number"])
+        if('guess-message' in session 
+            and session["guess-message"]=="You Guessed it!"):
+            return redirect("/")
+        if 'contador-intentos' in session:
+            session['contador-intentos']+=1
+        if(guess-session["random"]>0):
+            session["guess-message"]="Too High"
+        elif(guess-session["random"]<0):
+            session["guess-message"]="Too Low"
+        else:
+            session["guess-message"]="You Guessed it!"
     return redirect("/")
 
 @app.route("/reset",methods=["POST"])

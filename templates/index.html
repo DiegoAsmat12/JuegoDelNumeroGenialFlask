@@ -11,6 +11,7 @@
     <div class="container">
         <h1>Welcome to the Great Number Game!!!</h1>
         <h4>I am thinking of a number between 1 and 100</h4>
+        <h2>Contador de intentos: {{session["contador-intentos"]}}</h2>
         {% if session['guess-message']:%}
             {%if session['guess-message']!= "You Guessed it!": %}
                 <div class="message-container danger">
