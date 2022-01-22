@@ -6,10 +6,11 @@ app.secret_key="numero_secreto"
 
 @app.route("/", methods=["GET"])
 def showGame():
-    if 'random' in session:
-        pass
-    else:
+    if 'random' not in session:
         session["random"] = random.randint(1,100)
+
+    if 'contador-intentos' not in session:
+        session['contador-intentos']=0
     return render_template('index.html')
 
 @app.route("/guess", methods = ["POST"])
