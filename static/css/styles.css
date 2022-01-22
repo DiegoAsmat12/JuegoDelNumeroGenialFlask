@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    font-size: 20px;
+}
+.message-container{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 10px;
+    min-width: 500px;
+    min-height: 120px;
+    justify-content: center;
+}
+.btn{
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.btn-orange{
+    background-color: rgb(255, 200, 20);
+    align-self: center;
+}
+.btn-blue{
+    background-color: rgb(43, 100, 224);
+    color: white;
+}
+.text-orange{
+    color: rgb(255, 200, 20);
+}
+.danger{
+    background-color: rgb(218, 34, 34);
+}
+.success{
+    background-color: rgb(44, 173, 44);
+}
+.guess-box{
+    padding: 10px;
+    min-width: 350px;
+    background-color: rgb(78, 78, 78);
+    border-radius: 10px;
+}
+
+.guess-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 10px;
+    text-align: center;
+}
+#guess-number{
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 10px;
+}
