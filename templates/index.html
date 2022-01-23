@@ -11,12 +11,21 @@
     <div class="container">
         <h1>Welcome to the Great Number Game!!!</h1>
         <h4>I am thinking of a number between 1 and 100</h4>
-        <h2>Attempts: {{session["contador-intentos"]}}</h2>
+        <h2>Attempts done: {{session["contador-intentos"]}}</h2>
         {% if session['guess-message']:%}
             {%if session['guess-message']!= "You Guessed it!": %}
-                <div class="message-container danger">
-                    <h2 class="text-orange">{{session['guess-message']}}</h2>
-                </div>
+                {% if session['contador-intentos'] < 5: %}
+                    <div class="message-container danger">
+                        <h2 class="text-orange">{{session['guess-message']}}</h2>
+                    </div>
+                {%else:%}
+                    <div class="message-container danger">
+                        <h2 class="text-orange">You Lost!, Number was {{session["random"]}}</h2>
+                        <form action="/reset" method="post">
+                            <button class="btn btn-orange">Play Again</button>
+                        </form>
+                    </div>
+                {%endif%}
             {%else: %}
                 <div class="message-container success">
                     <h2 class="text-orange">{{session['guess-message']}}, Number was {{session["random"]}}</h2>
@@ -25,12 +34,19 @@
                         <button class="btn btn-blue">Play Again</button>
                     </form>
                 </div>
+                <div class="message-container success">
+                    <form action="/register" method="post">
+                        <label for="username" class="text-orange">User:</label>
+                        <input type="text" name="username" id="username" class="text-input">
+                        <button class="btn btn-blue">Register</button>
+                    </form>
+                </div>
             {%endif%}
         {%endif%}
         <div class="guess-box">
             <form action="/guess" method="post" class="guess-form">
                 <label for="guess-number" class="text-orange">Take a guess!!!</label>
-                <input type="number" name="guess-number" id="guess-number">
+                <input type="number" name="guess-number" id="guess-number" class="text-input">
                 <button type="submit" class="btn btn-orange">Guess</button>
             </form>
         </div>
