@@ -11,7 +11,7 @@
     <div class="container">
         <h1>Welcome to the Great Number Game!!!</h1>
         <h4>I am thinking of a number between 1 and 100</h4>
-        <h2>Contador de intentos: {{session["contador-intentos"]}}</h2>
+        <h2>Attempts: {{session["contador-intentos"]}}</h2>
         {% if session['guess-message']:%}
             {%if session['guess-message']!= "You Guessed it!": %}
                 <div class="message-container danger">
@@ -20,6 +20,7 @@
             {%else: %}
                 <div class="message-container success">
                     <h2 class="text-orange">{{session['guess-message']}}, Number was {{session["random"]}}</h2>
+                    <p class="text-orange">It only took you {{session["contador-intentos"]}} attempts!!</p>
                     <form action="/reset" method="post">
                         <button class="btn btn-blue">Play Again</button>
                     </form>
